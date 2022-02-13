@@ -1,20 +1,27 @@
 <script>
 // import TheWelcome from '@/components/TheWelcome.vue'
 import axios from "axios";
-import SuraDetailsVue from "./SuraDetails.vue";
+import AllSurahVue from "./surah-tabs/AllSurah.vue";
+import Madaniyah from "./surah-tabs/Madaniyah.vue";
+import Makkiya from "./surah-tabs/Makkiya.vue";
+
 export default {
   data() {
     return {
       surahList: [],
       makkiyah: [],
       madaniyah: [],
+
+      currentCom: "AllSurahVue",
     };
   },
   created() {
     this.fetchSurah();
   },
   components: {
-    SuraDetailsVue,
+    AllSurahVue,
+    Makkiya,
+    Madaniyah,
   },
   methods: {
     fetchSurah() {
@@ -28,7 +35,6 @@ export default {
           this.surahList.filter((el) => {
             if (el.type === "Makkiyah") {
               this.makkiyah.push(el);
-              console.log(this.makkiyah);
             } else {
               this.madaniyah.push(el);
             }
@@ -72,26 +78,45 @@ export default {
         <div class="sm:flex items-center justify-between">
           <div class="flex items-center">
             <a
-              class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800"
-              href=" javascript:void(0)"
+              @click="currentCom = 'AllSurahVue'"
+              class="cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800"
             >
-              <div class="py-2 px-8 bg-indigo-100 text-indigo-700 rounded-full">
+              <div
+                :class="[
+                  currentCom == 'AllSurahVue'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-600',
+                ]"
+                class="py-2 px-8 rounded-full"
+              >
                 <p>All</p>
               </div>
             </a>
             <a
-              class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 ml-4 sm:ml-8"
+              @click="currentCom = 'Makkiya'"
+              class="cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 ml-4 sm:ml-8"
             >
               <div
+                :class="[
+                  currentCom == 'Makkiya'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-600',
+                ]"
                 class="py-2 px-8 text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full"
               >
                 <p>Makkiyah</p>
               </div>
             </a>
             <a
-              class="rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 ml-4 sm:ml-8"
+              @click="currentCom = 'Madaniyah'"
+              class="cursor-pointer rounded-full focus:outline-none focus:ring-2 focus:bg-indigo-50 focus:ring-indigo-800 ml-4 sm:ml-8"
             >
               <div
+                :class="[
+                  currentCom == 'Madaniyah'
+                    ? 'bg-indigo-100 text-indigo-700'
+                    : 'text-gray-600',
+                ]"
                 class="py-2 px-8 text-gray-600 hover:text-indigo-700 hover:bg-indigo-100 rounded-full"
               >
                 <p>Madaniyah</p>
@@ -155,69 +180,25 @@ export default {
                 <td class="pl-4 text-right pr-5">Action</td>
               </tr>
             </thead>
-            <tbody v-for="(surah, idx) in surahList" :key="idx">
-              <tr
-                tabindex="0"
-                class="focus:outline-none h-10 border border-gray-100 rounded"
-              >
-                <td>
-                  <div class="ml-5">{{ surah.index }}</div>
-                </td>
-                <td>
-                  <router-link
-                    :to="{
-                      name: 'suraDetails',
-                      params: { id: Math.abs(surah.index) },
-                    }"
-                    class=""
-                  >
-                    <div class="flex items-center pl-5">
-                      <p
-                        class="text-base font-medium leading-none text-gray-500"
-                      >
-                        {{ surah.title }}-({{ surah.titleAr }})
-                      </p>
-                    </div>
-                  </router-link>
-                </td>
-                <td class="pl-24">
-                  <div class="flex items-center">
-                    <p class="text-sm leading-none text-gray-600">
-                      {{ surah.place }}
-                    </p>
-                  </div>
-                </td>
-                <td class="pl-24">
-                  <div class="flex items-center">
-                    <p class="text-sm leading-none text-gray-600">
-                      {{ surah.type }}
-                    </p>
-                  </div>
-                </td>
-                <td class="pl-5">
-                  <div class="flex items-center">
-                    <p class="text-sm leading-none text-gray-600 ml-2">
-                      {{ surah.count }}
-                    </p>
-                  </div>
-                </td>
-
-                <td class="pl-4 text-right pr-5">
-                  <router-link
-                    :to="{
-                      name: 'suraDetails',
-                      params: { id: Math.abs(surah.index) },
-                    }"
-                    class="focus:ring-2 focus:ring-offset-2 focus:ring-red-300 text-sm leading-none text-gray-600 py-2 px-5 bg-gray-100 rounded hover:bg-gray-200 focus:outline-none"
-                  >
-                    View
-                  </router-link>
-                </td>
-              </tr>
-            </tbody>
+            <transition name="fade">
+              <keep-alive>
+                <component :is="currentCom"></component>
+              </keep-alive>
+            </transition>
           </table>
         </div>
       </div>
     </div>
   </main>
 </template>
+<style>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+</style>
