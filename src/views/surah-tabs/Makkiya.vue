@@ -6,6 +6,8 @@ export default {
   data() {
     return {
       makkiyah: [],
+      currentPage: 1,
+      showItemPerPage: 10,
     };
   },
   created() {
@@ -13,6 +15,14 @@ export default {
   },
   components: {
     SuraDetailsVue,
+  },
+  computed: {
+    sliceSurah() {
+      return this.makkiyah.slice(
+        this.showItemPerPage * (this.currentPage - 1),
+        this.showItemPerPage * this.currentPage
+      );
+    },
   },
   methods: {
     fetchSurah() {
@@ -32,6 +42,12 @@ export default {
           });
         });
     },
+    nextButton() {
+      this.currentPage += 1;
+    },
+    prevButton() {
+      this.currentPage -= 1;
+    },
   },
 };
 </script>
@@ -39,7 +55,7 @@ export default {
 <template>
   <tbody>
     <tr
-      v-for="(surah, idx) in makkiyah"
+      v-for="(surah, idx) in sliceSurah"
       :key="idx"
       tabindex="0"
       class="focus:outline-none h-10 border border-gray-100 rounded"
@@ -97,4 +113,26 @@ export default {
       </td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="6">
+        <div class="buttons mt-5 flex justify-end w-full">
+          <button
+            v-show="currentPage > 1"
+            @click="prevButton()"
+            class="button mr-2"
+          >
+            Preview
+          </button>
+          <button
+            v-show="currentPage < makkiyah.length / showItemPerPage"
+            @click="nextButton()"
+            class="button"
+          >
+            Next
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tfoot>
 </template>

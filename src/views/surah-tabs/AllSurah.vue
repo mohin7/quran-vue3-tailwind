@@ -6,13 +6,24 @@ export default {
   data() {
     return {
       surahList: [],
+      noOfSurahPerPage: 10,
+      currentPage: 1,
     };
   },
+
   created() {
     this.fetchSurah();
   },
   components: {
     SuraDetailsVue,
+  },
+  computed: {
+    slicedSurah() {
+      return this.surahList.slice(
+        this.noOfSurahPerPage * (this.currentPage - 1),
+        this.noOfSurahPerPage * this.currentPage
+      );
+    },
   },
   methods: {
     fetchSurah() {
@@ -22,17 +33,30 @@ export default {
         )
         .then((data) => {
           this.surahList = data.data;
-          // console.log(data.data);
         });
     },
+    nextButton() {
+      this.currentPage += 1;
+    },
+    prevButton() {
+      this.currentPage -= 1;
+    },
   },
+
+  // computed: {
+  // },
+  // watch: {
+  //   nextButton: function (val) {
+  //     console.log(val + 1);
+  //   },
+  // },
 };
 </script>
 
 <template>
   <tbody>
     <tr
-      v-for="(surah, idx) in surahList"
+      v-for="(surah, idx) in slicedSurah"
       :key="idx"
       tabindex="0"
       class="focus:outline-none h-10 border border-gray-100 rounded"
@@ -90,4 +114,31 @@ export default {
       </td>
     </tr>
   </tbody>
+  <tfoot>
+    <tr>
+      <td colspan="6">
+        <div class="buttons mt-5 flex justify-end w-full">
+          <button
+            v-show="currentPage > 1"
+            @click="prevButton()"
+            class="button mr-2"
+          >
+            Preview
+          </button>
+          <button
+            v-show="currentPage < surahList.length / noOfSurahPerPage"
+            @click="nextButton()"
+            class="button"
+          >
+            Next
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tfoot>
 </template>
+<style>
+.button {
+  @apply bg-blue-300 p-2 rounded-sm px-5 hover:bg-blue-700;
+}
+</style>

@@ -6,6 +6,8 @@ export default {
   data() {
     return {
       madaniyah: [],
+      currentPage: 1,
+      noOfSurahPerPage: 10,
     };
   },
   created() {
@@ -13,6 +15,14 @@ export default {
   },
   components: {
     SuraDetailsVue,
+  },
+  computed: {
+    slicedSurah() {
+      return this.madaniyah.slice(
+        this.noOfSurahPerPage * (this.currentPage - 1),
+        this.noOfSurahPerPage * this.currentPage
+      );
+    },
   },
   methods: {
     fetchSurah() {
@@ -29,10 +39,16 @@ export default {
               setTimeout(() => {
                 this.madaniyah.push(el);
               }, 500);
-              //   console.log(this.makkiyah);
+              //   console.log(this.madaniyah);
             }
           });
         });
+    },
+    nextButton() {
+      this.currentPage += 1;
+    },
+    prevButton() {
+      this.currentPage -= 1;
     },
   },
 };
@@ -41,7 +57,7 @@ export default {
 <template>
   <tbody v-if="madaniyah.length > 0">
     <tr
-      v-for="(surah, idx) in madaniyah"
+      v-for="(surah, idx) in slicedSurah"
       :key="idx"
       tabindex="0"
       class="focus:outline-none h-10 border border-gray-100 rounded"
@@ -99,6 +115,7 @@ export default {
       </td>
     </tr>
   </tbody>
+
   <div
     v-else
     class="w-full h-full fixed block top-0 left-0 bg-white opacity-75 z-50"
@@ -110,4 +127,26 @@ export default {
       <i class="fas fa-circle-notch fa-spin fa-5x"></i>
     </span>
   </div>
+  <tfoot>
+    <tr>
+      <td colspan="6">
+        <div class="buttons mt-5 flex justify-end w-full">
+          <button
+            v-show="currentPage > 1"
+            @click="prevButton()"
+            class="button mr-2"
+          >
+            Preview
+          </button>
+          <button
+            v-show="currentPage < madaniyah.length / noOfSurahPerPage"
+            @click="nextButton()"
+            class="button"
+          >
+            Next
+          </button>
+        </div>
+      </td>
+    </tr>
+  </tfoot>
 </template>
