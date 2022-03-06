@@ -9,197 +9,18 @@
 
 <template>
   <footer class="bg-gray-800">
-    <div class="container mx-auto">
-      <div class="grid grid-cols-2 gap-8 py-8 md:grid-cols-4">
-        <div>
-          <h3 class="mb-6 text-sm font-semibold text-gray-400 uppercase">
-            Company
-          </h3>
-          <ul>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >About</a
-              >
-            </li>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Careers</a
-              >
-            </li>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Brand Center</a
-              >
-            </li>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Blog</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="mb-6 text-sm font-semibold text-gray-400 uppercase">
-            Help center
-          </h3>
-          <ul>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Discord Server</a
-              >
-            </li>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Twitter</a
-              >
-            </li>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Facebook
-              </a>
-            </li>
-            <a
-              href="#"
-              target="_blank"
-              rel="noreferrer"
-              class="text-gray-300 hover:underline"
-            >
-            </a>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-              >
-              </a
-              ><a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Contact Us</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="mb-6 text-sm font-semibold text-gray-400 uppercase">
-            Legal
-          </h3>
-          <ul>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Privacy Policy</a
-              >
-            </li>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Licensing</a
-              >
-            </li>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Terms &amp; Conditions</a
-              >
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h3 class="mb-6 text-sm font-semibold text-gray-400 uppercase">
-            Download
-          </h3>
-          <ul>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >iOS</a
-              >
-            </li>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Android</a
-              >
-            </li>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >Windows</a
-              >
-            </li>
-            <li class="mb-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noreferrer"
-                class="text-gray-300 hover:underline"
-                >MacOS</a
-              >
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
     <div
       class="py-6 px-4 bg-gray-700 md:flex md:items-center md:justify-between"
     >
       <span class="text-sm text-gray-300 sm:text-center"
-        >© 2022 <a href="https://flowbite.com">Flowbite™</a>. All Rights
+        >© 2022 <a href="https://github.com/mohin7">Mohin</a>. All Rights
         Reserved.
       </span>
       <div class="flex mt-4 space-x-6 sm:justify-center md:mt-0">
-        <a href="#" class="text-gray-400 hover:text-white">
+        <a
+          href="https://www.facebook.com/mohincse/"
+          class="text-gray-400 hover:text-white"
+        >
           <svg
             class="w-5 h-5"
             fill="currentColor"
@@ -213,7 +34,10 @@
             ></path>
           </svg>
         </a>
-        <a href="#" class="text-gray-400 hover:text-white">
+        <a
+          href="https://www.instagram.com/mohincse/?hl=en"
+          class="text-gray-400 hover:text-white"
+        >
           <svg
             class="w-5 h-5"
             fill="currentColor"
@@ -227,7 +51,10 @@
             ></path>
           </svg>
         </a>
-        <a href="#" class="text-gray-400 hover:text-white">
+        <a
+          href="https://twitter.com/mohincse"
+          class="text-gray-400 hover:text-white"
+        >
           <svg
             class="w-5 h-5"
             fill="currentColor"
@@ -239,7 +66,10 @@
             ></path>
           </svg>
         </a>
-        <a href="#" class="text-gray-400 hover:text-white">
+        <a
+          href="https://github.com/mohin7"
+          class="text-gray-400 hover:text-white"
+        >
           <svg
             class="w-5 h-5"
             fill="currentColor"
@@ -253,7 +83,10 @@
             ></path>
           </svg>
         </a>
-        <a href="#" class="text-gray-400 hover:text-white">
+        <a
+          href="https://dribbble.com/mohin7"
+          class="text-gray-400 hover:text-white"
+        >
           <svg
             class="w-5 h-5"
             fill="currentColor"
